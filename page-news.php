@@ -75,14 +75,11 @@ while ($query->have_posts()) {
     $categories     = get_the_terms(get_the_ID(), 'news_category');
     $published_date = get_the_date();
 
-    //echo $publish_date;
+
     $image_id = get_post_thumbnail_id();
     list($url, $width, $height) = wp_get_attachment_image_src($image_id, 'post-thumbnail');
-    /*        $width = $image_size[1];
-            $height = $image_size[2];*/
+
     $post_category = [];
-    //printer($categories);
-    //echo sizeof($categories);
     foreach ($categories as $category) {
         if (sizeof($categories) > 1) {
             array_push($post_category, $category->name);
@@ -91,8 +88,7 @@ while ($query->have_posts()) {
         }
     }
 
-    //printer($test);
-    //compact('title','content','featured_image','category','width','height');
+
     $news_post_single = array(
         'title'          => $title,
         'content'        => $content,
@@ -105,7 +101,6 @@ while ($query->have_posts()) {
     array_push($news_posts_array, $news_post_single);
 }
 $newsJSON = json_encode($news_posts_array);
-//echo $newsJSON;
 ?>
 
 <div class="news-listing">
